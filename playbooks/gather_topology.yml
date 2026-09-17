@@ -37,7 +37,6 @@
           - interfaces
           - interfaces_ip
         optional_args:
-          ssh_config: "{{ napalm_ssh_config }}"
           global_delay_factor: 2
       register: napalm_result
 
