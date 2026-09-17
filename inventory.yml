@@ -63,6 +63,12 @@ all:
           icon: "ASR1004 Front"
           w: 230
           h: 90
+    artifact_server:
+      hosts:
+        diagram-host:
+          ansible_host: 192.168.10.175
+      vars:
+        ansible_connection: ssh
 
         # pa-fw1:
         #   ansible_host: 192.168.10.80

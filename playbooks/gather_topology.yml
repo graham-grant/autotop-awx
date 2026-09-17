@@ -25,14 +25,6 @@
   hosts: network_devices
   connection: local
   gather_facts: no
-  #Custom SSH vars injected into NAPALM NetMiko to allow management of IOSV routers
-  #Only for lab environment
-  vars:
-    napalm_ssh_config:
-      KexAlgorithms: "+diffie-hellman-group14-sha1"
-      HostKeyAlgorithms: "+ssh-rsa"
-      PubKeyAcceptedKeyTypes: "+ssh-rsa"
-      MACs: "+hmac-sha1"
   tasks:
     - name: Get facts, interface state, and IPs via NAPALM
       napalm.napalm.get_facts:
@@ -104,4 +96,4 @@
         - name: Copy topology.drawio to artifact server
         ansible.builtin.copy:
             src: "{{ playbook_dir }}/../output/topology.drawio"
-            dest: /srv/diagrams/topology.drawio
+            dest: /home/crob/Projects/autotop-awx/topology.drawio
