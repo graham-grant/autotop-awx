@@ -2,8 +2,8 @@ all:
   children:
     network_devices:
       hosts:
-        9200-1:
-          ansible_host: 192.168.10.21
+        AT-8K-1:
+          ansible_host: 192.168.10.241
           ansible_network_os: ios       # napalm driver: ios, eos, junos, nxos, iosxr...
           icon: "C9200-24P Front"
         9200-2:
