@@ -93,7 +93,7 @@
       hosts: artifact_server
       gather_facts: no
       tasks:
-          - name: Copy topology.drawio to artifact server
-          ansible.builtin.copy:
-              src: "{{ playbook_dir }}/../output/topology.drawio"
-              dest: /home/crob/Projects/autotop-awx/topology.drawio
+      - name: Copy topology.drawio to artifact server
+        ansible.builtin.copy:
+            src: "{{ playbook_dir }}/../output/topology.drawio"
+            dest: /home/crob/Projects/autotop-awx/topology.drawio
