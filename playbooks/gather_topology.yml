@@ -79,15 +79,15 @@
       gather_facts: no
       tasks:
           - name: Run main.py against the gathered facts
-          command: >-
-              python3 {{ playbook_dir }}/../scripts/main.py
-              {{ playbook_dir }}/../output/facts
-              {{ playbook_dir }}/../output
-          register: build_result
+            command: >-
+                python3 {{ playbook_dir }}/../scripts/main.py
+                {{ playbook_dir }}/../output/facts
+                {{ playbook_dir }}/../output
+            register: build_result
 
-          - name: Show build script output in the job log
-          debug:
-              var: build_result.stdout_lines
+            - name: Show build script output in the job log
+            debug:
+                var: build_result.stdout_lines
 
     - name: Push generated diagram to artifact server
       hosts: artifact_server
