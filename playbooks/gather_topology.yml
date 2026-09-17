@@ -85,7 +85,7 @@
                 {{ playbook_dir }}/../output
             register: build_result
 
-            - name: Show build script output in the job log
+          - name: Show build script output in the job log
             debug:
                 var: build_result.stdout_lines
 
