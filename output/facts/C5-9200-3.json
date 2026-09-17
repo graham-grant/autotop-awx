@@ -1,0 +1,65 @@
+{
+    "hostname": "C5-9200-3",
+    "interfaces": {
+        "eth0": {
+            "description": "",
+            "is_enabled": true,
+            "is_up": true,
+            "last_flapped": -1.0,
+            "mac_address": "00:50:00:00:01:f7",
+            "mtu": 1500,
+            "speed": 1000.0
+        },
+        "eth1": {
+            "description": "",
+            "is_enabled": true,
+            "is_up": true,
+            "last_flapped": -1.0,
+            "mac_address": "00:50:00:00:01:f8",
+            "mtu": 1500,
+            "speed": 1000.0
+        },
+        "eth2": {
+            "description": "",
+            "is_enabled": true,
+            "is_up": true,
+            "last_flapped": -1.0,
+            "mac_address": "00:50:00:00:01:f9",
+            "mtu": 1500,
+            "speed": 1000.0
+        },
+        "eth3": {
+            "description": "",
+            "is_enabled": false,
+            "is_up": false,
+            "last_flapped": -1.0,
+            "mac_address": "00:50:00:00:01:fa",
+            "mtu": 1500,
+            "speed": 1000.0
+        }
+    },
+    "interfaces_ip": {
+        "eth0": {
+            "ipv4": {
+                "10.1.1.27": {
+                    "prefix_length": 24
+                }
+            }
+        },
+        "eth1": {
+            "ipv4": {
+                "10.10.5.17": {
+                    "prefix_length": 30
+                }
+            }
+        },
+        "eth2": {
+            "ipv4": {
+                "10.10.5.21": {
+                    "prefix_length": 30
+                }
+            }
+        }
+    },
+    "inventory_name": "C5-9200-3"
+}

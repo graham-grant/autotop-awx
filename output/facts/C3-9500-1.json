@@ -1,0 +1,250 @@
+{
+    "hostname": "C3-9500-1",
+    "interfaces": {
+        "eth0": {
+            "description": "",
+            "is_enabled": true,
+            "is_up": true,
+            "last_flapped": -1.0,
+            "mac_address": "00:50:00:00:01:37",
+            "mtu": 1500,
+            "speed": 1000.0
+        },
+        "eth1": {
+            "description": "",
+            "is_enabled": true,
+            "is_up": true,
+            "last_flapped": -1.0,
+            "mac_address": "00:50:00:00:01:38",
+            "mtu": 1500,
+            "speed": 1000.0
+        },
+        "eth2": {
+            "description": "",
+            "is_enabled": true,
+            "is_up": true,
+            "last_flapped": -1.0,
+            "mac_address": "00:50:00:00:01:39",
+            "mtu": 1500,
+            "speed": 1000.0
+        },
+        "eth3": {
+            "description": "",
+            "is_enabled": true,
+            "is_up": true,
+            "last_flapped": -1.0,
+            "mac_address": "00:50:00:00:01:3a",
+            "mtu": 1500,
+            "speed": 1000.0
+        },
+        "eth4": {
+            "description": "",
+            "is_enabled": true,
+            "is_up": true,
+            "last_flapped": -1.0,
+            "mac_address": "00:50:00:00:01:3b",
+            "mtu": 1500,
+            "speed": 1000.0
+        },
+        "eth5": {
+            "description": "",
+            "is_enabled": true,
+            "is_up": true,
+            "last_flapped": -1.0,
+            "mac_address": "00:50:00:00:01:3c",
+            "mtu": 1500,
+            "speed": 1000.0
+        },
+        "eth6": {
+            "description": "",
+            "is_enabled": true,
+            "is_up": true,
+            "last_flapped": -1.0,
+            "mac_address": "00:50:00:00:01:3d",
+            "mtu": 1500,
+            "speed": 1000.0
+        },
+        "eth7": {
+            "description": "",
+            "is_enabled": true,
+            "is_up": true,
+            "last_flapped": -1.0,
+            "mac_address": "00:50:00:00:01:3e",
+            "mtu": 1500,
+            "speed": 1000.0
+        },
+        "eth8": {
+            "description": "",
+            "is_enabled": true,
+            "is_up": true,
+            "last_flapped": -1.0,
+            "mac_address": "00:50:00:00:01:3f",
+            "mtu": 1500,
+            "speed": 1000.0
+        },
+        "eth9": {
+            "description": "",
+            "is_enabled": true,
+            "is_up": true,
+            "last_flapped": -1.0,
+            "mac_address": "00:50:00:00:01:40",
+            "mtu": 1500,
+            "speed": 1000.0
+        },
+        "eth10": {
+            "description": "",
+            "is_enabled": true,
+            "is_up": true,
+            "last_flapped": -1.0,
+            "mac_address": "00:50:00:00:01:41",
+            "mtu": 1500,
+            "speed": 1000.0
+        },
+        "eth11": {
+            "description": "",
+            "is_enabled": true,
+            "is_up": true,
+            "last_flapped": -1.0,
+            "mac_address": "00:50:00:00:01:42",
+            "mtu": 1500,
+            "speed": 1000.0
+        },
+        "eth12": {
+            "description": "",
+            "is_enabled": true,
+            "is_up": true,
+            "last_flapped": -1.0,
+            "mac_address": "00:50:00:00:01:43",
+            "mtu": 1500,
+            "speed": 1000.0
+        },
+        "eth13": {
+            "description": "",
+            "is_enabled": true,
+            "is_up": true,
+            "last_flapped": -1.0,
+            "mac_address": "00:50:00:00:01:44",
+            "mtu": 1500,
+            "speed": 1000.0
+        },
+        "eth14": {
+            "description": "",
+            "is_enabled": false,
+            "is_up": false,
+            "last_flapped": -1.0,
+            "mac_address": "00:50:00:00:01:45",
+            "mtu": 1500,
+            "speed": 1000.0
+        },
+        "eth15": {
+            "description": "",
+            "is_enabled": false,
+            "is_up": false,
+            "last_flapped": -1.0,
+            "mac_address": "00:50:00:00:01:46",
+            "mtu": 1500,
+            "speed": 1000.0
+        }
+    },
+    "interfaces_ip": {
+        "eth0": {
+            "ipv4": {
+                "10.1.1.89": {
+                    "prefix_length": 24
+                }
+            }
+        },
+        "eth1": {
+            "ipv4": {
+                "10.10.3.2": {
+                    "prefix_length": 30
+                }
+            }
+        },
+        "eth2": {
+            "ipv4": {
+                "10.10.3.10": {
+                    "prefix_length": 30
+                }
+            }
+        },
+        "eth3": {
+            "ipv4": {
+                "10.10.3.18": {
+                    "prefix_length": 30
+                }
+            }
+        },
+        "eth4": {
+            "ipv4": {
+                "10.10.3.26": {
+                    "prefix_length": 30
+                }
+            }
+        },
+        "eth5": {
+            "ipv4": {
+                "10.10.3.34": {
+                    "prefix_length": 30
+                }
+            }
+        },
+        "eth6": {
+            "ipv4": {
+                "10.10.3.42": {
+                    "prefix_length": 30
+                }
+            }
+        },
+        "eth7": {
+            "ipv4": {
+                "10.10.3.50": {
+                    "prefix_length": 30
+                }
+            }
+        },
+        "eth8": {
+            "ipv4": {
+                "10.10.3.58": {
+                    "prefix_length": 30
+                }
+            }
+        },
+        "eth9": {
+            "ipv4": {
+                "10.10.3.66": {
+                    "prefix_length": 30
+                }
+            }
+        },
+        "eth10": {
+            "ipv4": {
+                "10.10.3.74": {
+                    "prefix_length": 30
+                }
+            }
+        },
+        "eth11": {
+            "ipv4": {
+                "10.10.3.81": {
+                    "prefix_length": 30
+                }
+            }
+        },
+        "eth12": {
+            "ipv4": {
+                "10.10.3.89": {
+                    "prefix_length": 30
+                }
+            }
+        },
+        "eth13": {
+            "ipv4": {
+                "10.10.3.93": {
+                    "prefix_length": 30
+                }
+            }
+        }
+    },
+    "inventory_name": "C3-9500-1"
+}

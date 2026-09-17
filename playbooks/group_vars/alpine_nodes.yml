@@ -1,0 +1,11 @@
+# group_vars/alpine_nodes.yml
+---
+# Dispatches this group to the iproute2 task file
+facts_collector: iproute2
+
+# SSH Authentication for Linux nodes
+ansible_user: root
+ansible_password: "Cisco_123"
+
+# Lab-friendly safety flags to bypass host key verification on ephemeral nodes
+ansible_ssh_common_args: '-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'

@@ -1,0 +1,62 @@
+---
+# Single entry point for all fact-gathering, regardless of host type.
+#
+# Every host is tagged - via group_vars - with which collector applies
+# to it (facts_collector: napalm / iproute2 / whatever comes next). This
+# play just dispatches to that collector's task file under collectors/.
+#
+# Adding a new host type means: add collectors/<type>.yml, point the
+# right inventory group at it via facts_collector. Nothing in this file,
+# and nothing in scripts/parser.py onward, needs to change.
+#
+# Run:
+#   ansible-playbook playbooks/gather_topology.yml
+
+# ==============================================================================
+# PLAY 1: Collect network data dynamically across all platforms
+# ==============================================================================
+- hosts: all
+  gather_facts: no
+  vars:
+    facts_dir: "{{ playbook_dir }}/../output/facts"
+
+  pre_tasks:
+    # Ensure our staging area exists locally before writing individual files
+    - name: Ensure local facts directory structure exists
+      ansible.builtin.file:
+        path: "{{ facts_dir }}"
+        state: directory
+        mode: "0755"
+      delegate_to: localhost
+      run_once: true
+
+  tasks:
+    - name: Dispatch task execution to matching platform collector
+      ansible.builtin.include_tasks: "collectors/{{ facts_collector }}.yml"
+
+# ==============================================================================
+# PLAY 2: Compile independent JSON schema objects into a cohesive Draw.io graph
+# ==============================================================================
+- name: Build unified drawio graph and publish layout artifacts
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  vars:
+    facts_dir: "{{ playbook_dir }}/../output/facts"
+    out_dir: "{{ playbook_dir }}/../output"
+
+  tasks:
+    - name: Run main.py layout coordinator across all gathered facts
+      ansible.builtin.command:
+        cmd: "python3 {{ playbook_dir }}/../scripts/main.py {{ facts_dir }} {{ out_dir }}"
+      register: build_result
+      changed_when: true
+
+    - name: Show graph-builder diagnostics in job logging stdout
+      ansible.builtin.debug:
+        var: build_result.stdout_lines
+
+    - name: Fetch generated diagram matrix as binary object
+      ansible.builtin.slurp:
+        src: "{{ out_dir }}/topology.drawio"
+      register: drawio_file

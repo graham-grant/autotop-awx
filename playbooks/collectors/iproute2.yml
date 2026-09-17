@@ -1,0 +1,29 @@
+---
+# Collector for generic Linux hosts (Alpine, Ubuntu, anything with
+# iproute2) - no vendor driver exists for these, so we gather via `ip -j`
+# and transform into the shared schema ourselves. Assign this collector
+# via group_vars, e.g. group_vars/alpine_nodes.yml:
+#
+#   facts_collector: iproute2
+
+# playbooks/collectors/iproute2.yml
+# Collector for generic Linux hosts (Alpine, Ubuntu).
+# Targets hosts mapping to 'facts_collector: iproute2' via group_vars.
+
+- name: Gather interface and address state via iproute2
+  ansible.builtin.command: ip -j addr show
+  register: ip_addr_raw
+  changed_when: false
+
+- name: Transform raw JSON into the shared facts contract
+  ansible.builtin.command:
+    cmd: "python3 {{ playbook_dir }}/../scripts/build_alpine_facts_json.py {{ inventory_hostname }}"
+    stdin: "{{ ip_addr_raw.stdout }}"
+  delegate_to: localhost
+  register: facts_json_result
+  changed_when: false
+
+- name: Write and validate facts
+  ansible.builtin.include_tasks: _write_facts.yml
+  vars:
+    facts_json: "{{ facts_json_result.stdout }}"

@@ -1,0 +1,39 @@
+---
+# Gathers interface + IP data from the Alpine nodes and writes it into
+# output/facts/<hostname>.json in the same shape as the NAPALM facts
+# already written there for the Cisco vIOS hosts - parser.load_nodes()
+# just globs *.json in facts_dir, so both sets land in the same place
+# and main.py doesn't need to know or care which device type produced
+# which file.
+#
+# Run standalone:
+#   ansible-playbook playbooks/gather_topology_alpine.yml
+#
+# Or fold this `- hosts: alpine_nodes` play into your existing
+# gather_topology.yml as a second play alongside whatever gathers the
+# Cisco vIOS facts - a playbook file can hold multiple plays back to back.
+
+- hosts: alpine_nodes
+  gather_facts: no
+  vars:
+    facts_dir: "{{ playbook_dir }}/../output/facts"
+
+  tasks:
+    - name: Gather interface/IP data via iproute2
+      ansible.builtin.command: ip -j addr show
+      register: ip_addr_raw
+      changed_when: false
+
+    - name: Transform into NAPALM-shaped facts JSON
+      ansible.builtin.command:
+        cmd: "python3 {{ playbook_dir }}/build_facts_json.py {{ inventory_hostname }}"
+        stdin: "{{ ip_addr_raw.stdout }}"
+      delegate_to: localhost
+      register: facts_json_result
+      changed_when: false
+
+    - name: Write facts JSON to facts_dir
+      ansible.builtin.copy:
+        content: "{{ facts_json_result.stdout }}"
+        dest: "{{ facts_dir }}/{{ inventory_hostname }}.json"
+      delegate_to: localhost

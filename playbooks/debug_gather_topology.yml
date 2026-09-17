@@ -1,0 +1,92 @@
+---
+# Gathers interface facts and LLDP neighbor data from every host in the
+# `network_devices` group via NAPALM, then writes one JSON file per host
+# to output/facts/. Run build_topology.py afterwards to turn that into a
+# drawio diagram.
+#
+# Usage:
+#   export NAPALM_USERNAME=admin
+#   export NAPALM_PASSWORD=secret
+#   ansible-playbook -i inventory.yml playbooks/gather_topology.yml
+
+- name: Prepare output directory
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Ensure output/facts directory exists
+      file:
+        path: "{{ playbook_dir }}/../output/facts"
+        state: directory
+        mode: "0755"
+
+- name: Gather interface and LLDP neighbor data from all inventory devices
+  hosts: network_devices
+  connection: local
+  gather_facts: no
+  tasks:
+    - name: Get facts and LLDP neighbor details via NAPALM
+      napalm.napalm.get_facts:
+        hostname: "{{ ansible_host }}"
+        username: "{{ napalm_username }}"
+        password: "{{ napalm_password }}"
+        dev_os: "{{ ansible_network_os }}"
+        filter:
+          - facts
+          - lldp_neighbors
+      register: napalm_result
+
+    # TEMPORARY DEBUGGING - remove once lldp_neighbors comes back populated
+    - name: "DEBUG: show the full raw napalm_result"
+      debug:
+        var: napalm_result
+
+   - name: "DEBUG: call NAPALM directly, bypassing the Ansible module"
+     command: >-
+       python3 {{ playbook_dir }}/../scripts/napalm_diag.py
+       {{ ansible_host }}
+       {{ ansible_network_os }}
+     register: diag_result
+     changed_when: false
+
+    - name: "DEBUG: show standalone NAPALM diagnostic output"
+      debug:
+        var: diag_result.stdout_lines
+    # END TEMPORARY DEBUGGING
+
+    - name: Write this host's facts and neighbors to a JSON file
+      copy:
+        dest: "{{ playbook_dir }}/../output/facts/{{ inventory_hostname }}.json"
+        content: "{{ node_record | to_nice_json }}"
+      vars:
+        node_record:
+          inventory_name: "{{ inventory_hostname }}"
+          hostname: "{{ napalm_result.facts.hostname | default(inventory_hostname) }}"
+          neighbors: "{{ napalm_result.facts.lldp_neighbors | default({}) }}"
+
+- name: Build the drawio diagram and publish it as a job artifact
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  tasks:
+    - name: Run build_topology.py against the gathered facts
+      command: >-
+        python3 {{ playbook_dir }}/../scripts/build_topology.py
+        {{ playbook_dir }}/../output/facts
+        {{ playbook_dir }}/../output
+      register: build_result
+
+    - name: Show build script output in the job log
+      debug:
+        var: build_result.stdout_lines
+
+    - name: Read the generated drawio file
+      slurp:
+        src: "{{ playbook_dir }}/../output/topology.drawio"
+      register: drawio_file
+
+    - name: Publish the drawio file (base64-encoded) as a job artifact
+      set_stats:
+        data:
+          topology_drawio_b64: "{{ drawio_file.content }}"
+        per_host: false
+        aggregate: false

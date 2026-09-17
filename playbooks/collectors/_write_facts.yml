@@ -1,0 +1,24 @@
+---
+# Shared by every collector - this is the only task file that actually
+# touches disk, and the only one that has to agree with scripts/parser.py
+# about what a valid facts file looks like (via scripts/facts_schema.py).
+#
+# A collector's only job is to set `facts_json` (a JSON string in the
+# shared schema) and include this file. It is never copy-pasted or
+# reimplemented per collector, so the write/validate logic can't drift
+# out of sync between host types.
+
+- name: Validate facts JSON against the shared schema
+  ansible.builtin.command:
+    cmd: "python3 {{ playbook_dir }}/../scripts/facts_schema.py"
+    stdin: "{{ facts_json }}"
+  delegate_to: localhost
+  register: validation
+  failed_when: validation.rc != 0
+  changed_when: false
+
+- name: Write facts JSON to facts_dir
+  ansible.builtin.copy:
+    content: "{{ facts_json }}"
+    dest: "{{ facts_dir }}/{{ inventory_hostname }}.json"
+  delegate_to: localhost

@@ -1,0 +1,64 @@
+# ---
+# # Collector for NAPALM-supported network OS devices (the Cisco vIOS
+# # hosts). This is a sketch showing the pattern, not a drop-in replacement
+# # for whatever your existing Cisco-facing task already does - swap the
+# # napalm_get task for that. NAPALM's own output already matches the
+# # shared schema field-for-field, so there's no transform layer here,
+# # unlike iproute2.yml - just assemble and hand off.
+# #
+# # Assign this collector via group_vars, e.g. group_vars/cisco_devices.yml:
+# #
+# #   facts_collector: napalm
+# #   napalm_dev_os: ios
+#
+---
+# playbooks/collectors/napalm.yml
+# Collector for Cisco/IOS devices.
+# Assumes 'facts_collector: napalm' is set in group_vars/cisco_nodes.yml
+
+- name: Gather facts, interface state, and IPs via NAPALM
+  napalm.napalm.get_facts:
+    hostname: "{{ ansible_host }}"
+    username: "{{ napalm_username }}"
+    password: "{{ napalm_password }}"
+    dev_os: "{{ ansible_network_os }}"
+    filter:
+      - facts
+      - interfaces
+      - interfaces_ip
+    optional_args:
+      # Allows legacy Kex/MAC algorithms for lab IOSv routers
+      ssh_config:
+        KexAlgorithms: "+diffie-hellman-group14-sha1"
+        HostKeyAlgorithms: "+ssh-rsa"
+        PubKeyAcceptedKeyTypes: "+ssh-rsa"
+        MACs: "+hmac-sha1"
+      global_delay_factor: 2
+  # Force local execution contexts using your active virtual environment
+  connection: local
+  vars:
+    ansible_python_interpreter: "{{ ansible_playbook_python }}"
+  # ==============================================================================
+  # TIMEOUT CONFIGURATION
+  # ==============================================================================
+  async: 15  # Maximum time allowed for this task to run (in seconds)
+  poll: 1    # Check status every 1 second until completed or timed out
+
+  register: napalm_result
+
+- name: Construct facts JSON string matching the schema
+  ansible.builtin.set_fact:
+    formatted_facts_json: >-
+      {{
+        {
+          'inventory_name': inventory_hostname,
+          'hostname': napalm_result.ansible_facts.napalm_hostname | default(inventory_hostname),
+          'interfaces': napalm_result.ansible_facts.napalm_interfaces | default({}),
+          'interfaces_ip': napalm_result.ansible_facts.napalm_interfaces_ip | default({})
+        } | to_json
+      }}
+
+- name: Write and validate
+  ansible.builtin.include_tasks: _write_facts.yml
+  vars:
+    facts_json: "{{ formatted_facts_json }}"
