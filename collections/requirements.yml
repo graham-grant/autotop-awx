@@ -1,0 +1,4 @@
+---
+collections:
+  # Download from Ansible Galaxy
+  - name: napalm.napalm
