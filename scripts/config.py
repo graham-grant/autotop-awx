@@ -37,7 +37,6 @@ NEW_NODE_GRID_TOP_MARGIN = 100  # gap below the lowest existing node
 # within one of these (e.g. a /30 carved out of the /24) is excluded too.
 EXCLUDED_NETWORKS = [
     ipaddress.ip_network("192.168.10.0/24"),
-    ipaddress.ip_network("10.1.1.0/24"),
 ]
 
 # ---------------------------------------------------------------------------

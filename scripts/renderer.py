@@ -179,15 +179,15 @@ def render(nodes, specs, edges_by_id, icons_by_id=None, icon_library=None):
         color = STATUS_UP_COLOR if edge["is_up"] else STATUS_DOWN_COLOR
 
         # --- IP Labels (White Backdrop) ---
-        ip_style = IP_LABEL_STYLE
-        if not ip_style.endswith(";"):
-            ip_style += ";"
-        ip_style += "labelBackgroundColor=#ffffff;fontColor=#000000;opacity=70;"
-
-        if edge.get("source_ip"):
-            _add_edge_label(root, s.id, edge["source_ip"], -IP_LABEL_FRACTION, "ip-src", ip_style)
-        if edge.get("target_ip"):
-            _add_edge_label(root, s.id, edge["target_ip"], IP_LABEL_FRACTION, "ip-tgt", ip_style)
+        # ip_style = IP_LABEL_STYLE
+        # if not ip_style.endswith(";"):
+        #     ip_style += ";"
+        # ip_style += "labelBackgroundColor=#ffffff;fontColor=#000000;opacity=70;"
+        #
+        # if edge.get("source_ip"):
+        #     _add_edge_label(root, s.id, edge["source_ip"], -IP_LABEL_FRACTION, "ip-src", ip_style)
+        # if edge.get("target_ip"):
+        #     _add_edge_label(root, s.id, edge["target_ip"], IP_LABEL_FRACTION, "ip-tgt", ip_style)
 
         # --- Interface Labels (Status Colored Backdrop + Dynamic Rotation) ---
         base_intf = INTF_LABEL_STYLE

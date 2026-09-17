@@ -13,8 +13,6 @@ from config import EXCLUDED_NETWORKS
 import ipaddress
 from collections import defaultdict
 
-#Ensure provided JSON matches schema
-from facts_schema import validate as validate_facts
 
 def load_icons(inventory_path):
     """Map each inventory host name to its preferred icon library title.
@@ -51,13 +49,9 @@ def load_nodes(facts_dir):
     nodes = []
     for path in sorted(Path(facts_dir).glob("*.json")):
         with open(path) as f:
-            node = json.load(f)
-        errors = validate_facts(node)
-        if errors:
-            print(f"Skipping {path.name} - invalid facts: {'; '.join(errors)}")
-            continue
-        nodes.append(node)
+            nodes.append(json.load(f))
     return nodes
+
 
 def get_is_up(node, intf_name):
     """Return True/False if NAPALM reported interface status, else None if unknown."""
