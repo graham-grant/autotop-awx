@@ -1,1 +1,16 @@
-<mxfile><diagram name="Positions"><mxGraphModel><root><mxCell id="0" /><mxCell id="1" parent="0" /><mxCell id="2" value="9200-1" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="-110.00000000000001" y="520.0" width="230" height="42" as="geometry" /></mxCell><mxCell id="3" value="9200-10" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="950.0" y="670.0" width="230" height="42" as="geometry" /></mxCell><mxCell id="4" value="9200-2" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="145.0" y="520.0" width="230" height="42" as="geometry" /></mxCell><mxCell id="5" value="9200-3" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="413.53999999999996" y="520.0" width="230" height="42" as="geometry" /></mxCell><mxCell id="6" value="9200-4" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="680.0" y="520.0" width="230" height="42" as="geometry" /></mxCell><mxCell id="7" value="9200-5" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="950.0" y="520.0" width="230" height="42" as="geometry" /></mxCell><mxCell id="8" value="9200-6" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="-110.00000000000001" y="670.0" width="230" height="42" as="geometry" /></mxCell><mxCell id="9" value="9200-7" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="145.0" y="670.0" width="230" height="42" as="geometry" /></mxCell><mxCell id="10" value="9200-8" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="413.53999999999996" y="670.0" width="230" height="42" as="geometry" /></mxCell><mxCell id="11" value="9200-9" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="680.0" y="670.0" width="230" height="42" as="geometry" /></mxCell><mxCell id="12" value="9500-1" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="-31.460000000000107" y="250.0" width="230" height="42" as="geometry" /></mxCell><mxCell id="13" value="9500-2" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="858.54" y="250.0" width="230" height="42" as="geometry" /></mxCell><mxCell id="14" value="ASR1004-1" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="-31.460000000000008" y="36.0" width="230" height="90" as="geometry" /></mxCell><mxCell id="15" value="ASR1004-2" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="858.54" y="36.0" width="230" height="90" as="geometry" /></mxCell></root></mxGraphModel></diagram></mxfile>
+<mxfile host="Electron">
+  <diagram name="Positions" id="0">
+    <mxGraphModel dx="2320" dy="734" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="9200-1" vertex="1">
+          <mxGeometry height="42" width="230" x="-110.00000000000001" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="9200-2" vertex="1">
+          <mxGeometry height="42" width="230" x="-110" y="770" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
