@@ -2,67 +2,14 @@ all:
   children:
     network_devices:
       hosts:
-        AT-8K-1:
+        9200-1:
           ansible_host: 192.168.10.241
           ansible_network_os: ios       # napalm driver: ios, eos, junos, nxos, iosxr...
           icon: "C9200-24P Front"
         9200-2:
-          ansible_host: 192.168.10.22
+          ansible_host: 192.168.10.242
           ansible_network_os: ios       # napalm driver: ios, eos, junos, nxos, iosxr...
           icon: "C9200-24P Front"
-
-        9200-3:
-          ansible_host: 192.168.10.23
-          ansible_network_os: ios       # napalm driver: ios, eos, junos, nxos, iosxr...
-          icon: "C9200-24P Front"
-        9200-4:
-          ansible_host: 192.168.10.24
-          ansible_network_os: ios       # napalm driver: ios, eos, junos, nxos, iosxr...
-          icon: "C9200-24P Front"
-        9200-5:
-          ansible_host: 192.168.10.25
-          ansible_network_os: ios       # napalm driver: ios, eos, junos, nxos, iosxr...
-          icon: "C9200-24P Front"
-        9200-6:
-          ansible_host: 192.168.10.26
-          ansible_network_os: ios       # napalm driver: ios, eos, junos, nxos, iosxr...
-          icon: "C9200-24P Front"
-        9200-7:
-          ansible_host: 192.168.10.27
-          ansible_network_os: ios       # napalm driver: ios, eos, junos, nxos, iosxr...
-          icon: "C9200-24P Front"
-        9200-8:
-          ansible_host: 192.168.10.28
-          ansible_network_os: ios       # napalm driver: ios, eos, junos, nxos, iosxr...
-          icon: "C9200-24P Front"
-        9200-9:
-          ansible_host: 192.168.10.29
-          ansible_network_os: ios       # napalm driver: ios, eos, junos, nxos, iosxr...
-          icon: "C9200-24P Front"
-        9200-10:
-          ansible_host: 192.168.10.30
-          ansible_network_os: ios       # napalm driver: ios, eos, junos, nxos, iosxr...
-          icon: "C9200-24P Front"
-        9500-1:
-          ansible_host: 192.168.10.31
-          ansible_network_os: ios       # napalm driver: ios, eos, junos, nxos, iosxr...
-          icon: "C9500-24Q"
-        9500-2:
-          ansible_host: 192.168.10.32
-          ansible_network_os: ios       # napalm driver: ios, eos, junos, nxos, iosxr...
-          icon: "C9500-24Q"
-        ASR1004-1:
-          ansible_host: 192.168.10.33
-          ansible_network_os: ios       # napalm driver: ios, eos, junos, nxos, iosxr...
-          icon: "ASR1004 Front"
-          w: 230
-          h: 90
-        ASR1004-2:
-          ansible_host: 192.168.10.34
-          ansible_network_os: ios       # napalm driver: ios, eos, junos, nxos, iosxr...
-          icon: "ASR1004 Front"
-          w: 230
-          h: 90
     artifact_server:
       hosts:
         diagram-host:
