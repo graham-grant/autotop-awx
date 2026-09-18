@@ -67,20 +67,11 @@
       debug:
         var: build_result.stdout_lines
 
-- name: Push generated diagram to personal PC
-  hosts: localhost
-  connection: local
+- name: Push generated diagram to artifact server
+  hosts: artifact_server
   gather_facts: no
   tasks:
-    - name: Copy topology.drawio via SFTP (paramiko, no sshpass needed)
-      ansible.builtin.command:
-        cmd: >-
-          python3 -c "
-          import paramiko;
-          t = paramiko.Transport(('192.168.10.175', 22));
-          t.connect(username='{{ pc_username }}', password='{{ pc_password }}');
-          sftp = paramiko.SFTPClient.from_transport(t);
-          sftp.put('{{ playbook_dir }}/../output/topology.drawio', '/home/crob/Projects/autotop-awx/topology.drawio');
-          sftp.close();
-          t.close()"
-      no_log: true
+    - name: Copy topology.drawio to artifact server
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/../output/topology.drawio"
+        dest: /home/crob/Projects/autotop-awx/topology.drawio
