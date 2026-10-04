@@ -51,6 +51,16 @@
           interfaces: "{{ napalm_result.ansible_facts.napalm_interfaces | default({}) }}"
           interfaces_ip: "{{ napalm_result.ansible_facts.napalm_interfaces_ip | default({}) }}"
 
+- name: Push all gathered facts to artifact server
+  hosts: artifact_server
+  gather_facts: no
+  tasks:
+    - name: Copy facts directory to artifact server
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/../output/facts/"
+        dest: /home/hp/Projects/autotop-awx/output/facts/
+        mode: "0755"
+
 - name: Build the drawio diagram and publish it as a job artifact
   hosts: localhost
   connection: local
