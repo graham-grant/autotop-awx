@@ -74,4 +74,4 @@
     - name: Copy topology.drawio to artifact server
       ansible.builtin.copy:
         src: "{{ playbook_dir }}/../output/topology.drawio"
-        dest: /home/crob/Projects/autotop-awx/topology.drawio
+        dest: /home/hp/Projects/autotop-awx/topology.drawio
