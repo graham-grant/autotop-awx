@@ -91,7 +91,7 @@ def load_icon_library(path: str) -> dict[str, IconEntry]:
 
 if __name__ == "__main__":
     import sys
-    lib = load_icon_library(sys.argv[1] if len(sys.argv) > 1 else "Prod_Library.xml")
+    lib = load_icon_library(sys.argv[1] if len(sys.argv) > 1 else "../docs/Prod_Library.xml")
     print(f"\nLoaded {len(lib)} icon(s):")
     for title, entry in lib.items():
         print(f"  {title!r}: {entry.w}x{entry.h}, style[:80]={entry.style[:80]}...")
